@@ -1,0 +1,50 @@
+/* Custom styles */
+body {
+    background-image: url('Media/446481.jpg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    background-position: center top 50px; /* Center the background image and move it down by 50px */
+    color: #ffffff; /* Set text color to white for better contrast */
+  }
+  .navbar-brand {
+    font-size: 1.5rem; /* Increase font size for brand */
+  }
+  .navbar-nav .nav-link {
+    font-size: 1.2rem; /* Increase font size for nav links */
+  }
+  .container {
+    padding: 20px; /* Add padding to the container */
+  }
+  .col-lg-6 {
+    display: flex;
+    align-items: center; /* Vertically center content */
+  }
+  .img-fluid {
+    border-radius: 10px; /* Add border radius to images */
+    width: 100%; /* Set image width to 100% */
+    max-width: 100%; /* Set maximum image width */
+    height: auto; /* Maintain aspect ratio */
+  }
+  .background-border {
+    border-top: 10px solid #dee2e6; /* Light gray border */
+  }
+  /* Back to top button */
+  #back-to-top-btn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position - Stay at the bottom */
+    bottom: 20px; /* Place the button 20px from the bottom */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    background-color: #ff0000; /* Blue background color */
+    color: white; /* White text color */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    padding: 15px; /* Add some padding */
+    border-radius: 50%; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+  }
+  #back-to-top-btn:hover {
+    background-color: #b11b1b; /* Darker blue on hover */
+  }
+  
