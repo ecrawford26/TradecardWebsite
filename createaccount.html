@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">Pokémon TCG Collection</a>
@@ -20,10 +19,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Create Account/Sign in</a>
+            <a class="nav-link active" href="#">Create Account/Sign in</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">My Collection</a>
@@ -50,50 +49,50 @@
       </div>
     </div>
   </nav>
-  <div class="container mt-5">
+ 
+  <div class="container">
     <div class="row">
-      <!-- Create Account Section -->
-      <div class="col-lg-6">
-        <h2 class="section-heading">Create an Account</h2>
-        <p>Create an account to start managing your Pokémon TCG collection. 
-          Or Sign in and continue your quest to collect them all!
-        </p>
+      <div class="col-md-6">
+        <form id="form1">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your data with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <button type="Sign In" class="btn btn-primary">Sign In</button>
+        </form>
       </div>
-      <div class="col-lg-6">
-        <img src="Media/Pokémon_TCG_Online_Logo.png" alt="Create Account Photo" class="img-fluid rounded">
-      </div>
-    </div>
-    <div class="row mt-5">
-      <!-- Store Cards Section -->
-      <div class="col-lg-6 order-lg-2">
-        <h2 class="section-heading">Collection</h2>
-        <p>Keep track of your Pokémon TCG cards with ease.</p>
-      </div>
-      <div class="col-lg-6 order-lg-1">
-        <img src="Media/collection.jpg" alt="Store Cards Photo" class="img-fluid rounded">
-      </div>
-    </div>
-    <div class="row mt-5">
-      <!-- Filter Cards Section -->
-      <div class="col-lg-6">
-        <h2 class="section-heading">Expansions</h2>
-        <p>Find the cards you're looking for quickly and easily filtering by your choice of expansion.</p>
-      </div>
-      <div class="col-lg-6">
-        <img src="Media/AZgK03m5oBDdzWtoxLTTZlH3CJD2Gtyh.png" alt="Filter Cards Photo" class="img-fluid rounded">
-      </div>
-    </div>
-    <div class="row mt-5">
-      <!-- Share with Friends Section -->
-      <div class="col-lg-6 order-lg-2">
-        <h2 class="section-heading">Share with Friends</h2>
-        <p>Show off your collection to your friends and fellow Pokémon enthusiasts.</p>
-      </div>
-      <div class="col-lg-6 order-lg-1">
-        <img src="Media/Picture1.jpg" alt="Share with Friends Photo" class="img-fluid rounded">
+
+      <div class="col-md-6">
+        <form id="form2">
+          <div class="mb-3">
+            <label for="exampleInputName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp">
+            <div id="nameHelp" class="form-text">Enter your full name.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail2" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword2" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputConfirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputConfirmPassword">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
       </div>
     </div>
   </div>
+
   <!-- Back to top button -->
   <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
   <!-- Bootstrap Bundle with Popper -->
@@ -118,11 +117,11 @@
     }
   </script>
 
- <!-- Footer -->
- <footer class="footer mt-5 py-3 bg-dark text-white">
-  <div class="container">
-    <span>&copy; 2024 Pokémon TCG Collection</span>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="footer mt-5 py-3 bg-dark text-white">
+    <div class="container">
+      <span>&copy; 2024 Pokémon TCG Collection</span>
+    </div>
+  </footer>
 </body>
 </html>
