@@ -8,6 +8,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add some padding to the sections for better visualization */
+    section {
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,8 +42,18 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Discussion</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">How to play</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              How to play
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#objective">Objective</a></li>
+              <li><a class="dropdown-item" href="#setup">Setup</a></li>
+              <li><a class="dropdown-item" href="#gameplay">Gameplay</a></li>
+              <li><a class="dropdown-item" href="#winning">Winning the Game</a></li>
+              <li><a class="dropdown-item" href="#conditions">Special Conditions</a></li>
+              <li><a class="dropdown-item" href="#rules">Rules and Card Effects</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -49,8 +65,42 @@
       </div>
     </div>
   </nav>
+
+  <!-- Main content -->
+  <section id="objective" class="container2">
+    <h2 class="section-heading">Objective</h2>
+    <p>The main objective of the game is to Knock Out your opponent's Pokémon by attacking them until they run out of Hit Points (HP), or by fulfilling certain victory conditions specified in the rules (such as drawing all Prize Cards).</p>
+  </section>
+  
+  <section id="setup" class="container2">
+    <h2 class="section-heading">Setup</h2>
+    <p>Each player needs a deck of 60 cards consisting of Pokémon cards, Trainer cards, and Energy cards. Players also need a playing area where they can place their Active Pokémon, Benched Pokémon, Prize Cards, and Discard pile.</p>
+  </section>
+  
+  <section id="gameplay" class="container2">
+    <h2 class="section-heading">Gameplay</h2>
+    <p>Players take turns and can perform various actions on their turn, including drawing a card from their deck, attaching Energy cards to their Pokémon, playing Trainer cards, evolving their Pokémon, and attacking their opponent's Pokémon.</p>
+  </section>
+  
+  <section id="winning" class="container2">
+    <h2 class="section-heading">Winning the Game</h2>
+    <p>The game can be won by Knocking Out all of your opponent's Pokémon, drawing all of your Prize Cards, or if your opponent cannot draw a card at the beginning of their turn due to having an empty deck.</p>
+  </section>
+  
+  <section id="conditions" class="container2">
+    <h2 class="section-heading">Special Conditions</h2>
+    <p>Pokémon TCG includes special conditions like Poisoned, Burned, Paralyzed, and Asleep, which can affect Pokémon during gameplay. These conditions can be cured using specific Trainer cards or Pokémon abilities.</p>
+  </section>
+  
+  <section id="rules" class="container2">
+    <h2 class="section-heading">Rules and Card Effects</h2>
+    <p>The Pokémon TCG rulebook provides comprehensive guidelines on gameplay, including specific card effects, abilities, and interactions. Players should familiarize themselves with the rules to understand how different cards and mechanics work together.</p>
+  </section>
+  
+
   <!-- Back to top button -->
   <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
+
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Custom JavaScript -->
@@ -81,3 +131,4 @@
 </footer>
 </body>
 </html>
+

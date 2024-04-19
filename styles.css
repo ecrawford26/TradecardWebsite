@@ -9,11 +9,10 @@ body {
   text-align: left;
   background-color: #e2e8f0;
   background-image: url('Media/446481.jpg');
-  background-size: 120%; /* Ensures the background image covers the entire container */
+  background-size: 100%; /* Ensures the background image covers the entire container */
   background-repeat: repeat; /* Repeats the background image */
   padding-bottom: 100px;
 }
-
 
 .navbar-brand {
   font-size: 1.5rem;
@@ -134,3 +133,29 @@ body {
   position: fixed;
   bottom: 0;
 }
+
+/* Custom styles for the "How to play" sections */
+.section-heading {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.container2 {
+  padding: 20px 20px 10px 20px; /* Added padding to the top */
+  background-color: #343a40; /* Match the background color with the navbar */
+  border-radius: 10px; /* Rounded corners */
+  margin-bottom: 20px; /* Spacing between sections */
+}
+
+.container2 p {
+  color: #fff; /* White text color */
+}
+
+/* Add space between navbar and content */
+.navbar {
+  margin-bottom: 20px;
+}
+
+
