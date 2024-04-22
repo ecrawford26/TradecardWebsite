@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon TCG Collection</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pokémon TCG Collection</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="createaccount.html">Create Account/Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myCollection.html">My Collection</a>
+          </li>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="expansions.html" id="expansionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Expansions
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="expansionsDropdown">
+            <li><a class="dropdown-item" href="#">Base</a></li>
+            <li><a class="dropdown-item" href="#">Jungle</a></li>
+            <li><a class="dropdown-item" href="#">Fossil</a></li>
+            <li><a class="dropdown-item" href="#">Base Set 2</a></li>
+          </ul>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="discussion.html">Discussion</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="howtoplay.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              How to play
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="howtoplay.html#objective">Objective</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#setup">Setup</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#gameplay">Gameplay</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#winning">Winning the Game</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#conditions">Special Conditions</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#rules">Rules and Card Effects</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- Back to top button -->
+  <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    // Get the button
+    var mybutton = document.getElementById("back-to-top-btn");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer mt-5 py-3 bg-dark text-white">
+    <div class="container">
+      <span>&copy; 2024 Pokémon TCG Collection</span>
+    </div>
+  </footer>
+</body>
+</html>
