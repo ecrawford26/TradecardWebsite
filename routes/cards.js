@@ -20,8 +20,11 @@ router.get('/allcards', async (req, res) => {
 router.get('/urls', async (req, res) => {
     try {
         const [rows, fields] = await db.query('SELECT url FROM card');
-        const urls = rows.map(card => card.url); // Use 'card.url' instead of 'card.url_img'
-        res.json(urls);
+        const urls = rows.map(card => card.url);
+        // Generate HTML with <img> tags for each URL
+        const imagesHtml = urls.map(url => `<img src="${url}" alt="Card Image">`).join('');
+        // Send the HTML response
+        res.send(imagesHtml);
     } catch (error) {
         console.error('Error querying database:', error);
         res.status(500).json({ message: 'Internal Server Error' });
