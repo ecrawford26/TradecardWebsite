@@ -59,8 +59,20 @@
     </div>
   </nav>
 
+ 
   <div id="cardList" class="container"></div>
   </div>
+
+    <!-- Custom JavaScript -->
+    <script src="scripts.js"></script>
+
+    <script>
+      // Function to handle click event on card images
+      function handleCardClick(cardName) {
+        // Redirect to the cardDetails.html page with the cardName as a query parameter
+        window.location.href = `/cardDetails.html?name=${encodeURIComponent(cardName)}`;
+      }
+    </script>
 
   <!-- Back to top button -->
   <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
