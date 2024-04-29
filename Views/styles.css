@@ -162,3 +162,8 @@ body {
  section {
   padding: 20px;
 }
+
+.card img {
+  width: 100px; /* Adjust this value to your desired width */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
+}
