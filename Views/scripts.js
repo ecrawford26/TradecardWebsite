@@ -62,29 +62,12 @@ async function fetchCardDetails(cardName) {
     return await response.json();
 }
 
-// Display card details on the webpage
-function displayCardDetails(cardDetails) {
-    document.getElementById('cardName').textContent = cardDetails.name;
-    document.getElementById('cardImage').src = cardDetails.url;
-    document.getElementById('cardNameValue').textContent = cardDetails.name;
-    document.getElementById('cardUrlValue').textContent = cardDetails.url;
-    // Populate other fields as needed
-}
-
-// Fetch and display card details when the page loads
-window.addEventListener('load', async () => {
-    try {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const cardName = urlParams.get('name');
-        if (cardName) {
-            const cardDetails = await fetchCardDetails(cardName);
-            displayCardDetails(cardDetails);
-        } else {
-            console.error('Error: No card name provided');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        // Handle error (e.g., display error message on the page)
+// Function to toggle the dropdown for a card
+function toggleDropdown(cardId) {
+    const dropdown = document.getElementById('dropdown_' + cardId);
+    if (dropdown.style.display === 'none') {
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
     }
-});
+}

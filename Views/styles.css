@@ -180,3 +180,8 @@ body {
   margin-top: 5px; /* Add some space between the image and the text */
 }
 
+.card-link {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -7,11 +7,13 @@ const cardRoutes = require('./TradecardWebsite/routes/cards');
 
 // Middleware to use the cardRoutes for requests starting with '/cards'
 app.use('/cards', cardRoutes, express.static('Views'));
+app.use(express.static('Views'))
 
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
 
 // API endpoint to fetch detailed information about a specific card
 app.get('/cards/:cardName', (req, res) => {
