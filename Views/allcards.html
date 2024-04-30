@@ -82,34 +82,32 @@
                           <!-- Card image -->
                           <img src="${card.url}" class="card-img-top" alt="${card.name}">
                           <div class="card-body">
-                              <!-- Card name and expansion ID -->
+                              <!-- Card name -->
                               <h5 class="card-title">${card.name}</h5>
-                              <!-- Additional card details -->
-                              <ul class="list-group">
-                                  <li class="list-group-item">Card ID: ${card.card_id}</li>
-                                  <li class="list-group-item">Expansion ID: ${card.expansion_id}</li>
-                                  <li class="list-group-item">Series ID: ${card.series_id}</li>
-                                  <li class="list-group-item">Publisher ID: ${card.publisher_id}</li>
-                                  <li class="list-group-item">Generation ID: ${card.generation_id}</li>
-                                  <li class="list-group-item">Release Date: ${card.release_date}</li>
-                                  <li class="list-group-item">Artist ID: ${card.artist_id}</li>
-                                  <li class="list-group-item">Card Number: ${card.card_number}</li>
-                                  <li class="list-group-item">Type ID: ${card.type_id}</li>
-                                  <li class="list-group-item">Level: ${card.level}</li>
-                                  <li class="list-group-item">HP: ${card.hp}</li>
-                                  <li class="list-group-item">Evolves From: ${card.evolves_from}</li>
-                                  <li class="list-group-item">Evolves To: ${card.evolves_to}</li>
-                                  <li class="list-group-item">Rarity ID: ${card.rarity_id}</li>
-                                  <li class="list-group-item">Info: ${card.info}</li>
-                                  <li class="list-group-item">Pokedex Numbers: ${card.pokedex_numbers}</li>
-                              </ul>
-                              <!-- Button to toggle dropdown -->
-                              <button class="btn btn-primary mt-3" onclick="toggleDropdown(${card.card_id})">Show Details</button>
                               <!-- Dropdown for additional card details -->
-                              <div id="dropdown_${card.card_id}" class="dropdown mt-3" style="display: none;">
-                                  <div class="dropdown-menu">
-                                      <!-- Additional card details will be populated here -->
-                                  </div>
+                              <div class="dropdown mt-3">
+                                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton_${card.card_id}" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Show Details
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_${card.card_id}">
+                                      <!-- Additional card details -->
+                                      <li class="list-group-item">Card ID: ${card.card_id}</li>
+                                      <li class="list-group-item">Expansion ID: ${card.expansion_id}</li>
+                                      <li class="list-group-item">Series ID: ${card.series_id}</li>
+                                      <li class="list-group-item">Publisher ID: ${card.publisher_id}</li>
+                                      <li class="list-group-item">Generation ID: ${card.generation_id}</li>
+                                      <li class="list-group-item">Release Date: ${card.release_date}</li>
+                                      <li class="list-group-item">Artist ID: ${card.artist_id}</li>
+                                      <li class="list-group-item">Card Number: ${card.card_number}</li>
+                                      <li class="list-group-item">Type ID: ${card.type_id}</li>
+                                      <li class="list-group-item">Level: ${card.level}</li>
+                                      <li class="list-group-item">HP: ${card.hp}</li>
+                                      <li class="list-group-item">Evolves From: ${card.evolves_from}</li>
+                                      <li class="list-group-item">Evolves To: ${card.evolves_to}</li>
+                                      <li class="list-group-item">Rarity ID: ${card.rarity_id}</li>
+                                      <li class="list-group-item">Info: ${card.info}</li>
+                                      <li class="list-group-item">Pokedex Numbers: ${card.pokedex_numbers}</li>
+                                  </ul>
                               </div>
                           </div>
                       </div>
@@ -121,21 +119,7 @@
           console.error('Error fetching card data:', error);
       }
   });
-
-  // Function to toggle the dropdown for a card
-  function toggleDropdown(cardId) {
-      const dropdown = document.getElementById('dropdown_' + cardId);
-      if (dropdown.style.display === 'none') {
-          dropdown.style.display = 'block';
-      } else {
-          dropdown.style.display = 'none';
-      }
-  }
 </script>
-
-
-
-
 
     <!-- Custom JavaScript -->
     <script src="scripts.js"></script>

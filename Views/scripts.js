@@ -9,6 +9,8 @@ async function fetchCards() {
     return await response.json();
 }
 
+
+
 // Display cards on the webpage
 function displayCards(cards) {
     const cardList = document.getElementById('cardList');
