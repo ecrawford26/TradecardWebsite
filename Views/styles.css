@@ -185,3 +185,53 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.message-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Add styles for card containers */
+.card {
+  background-color: #343a40; /* Set background color */
+  color: white; /* Set text color to white */
+  border: 1px solid #dee2e6; /* Add border */
+  border-radius: 8px; /* Add border radius */
+}
+
+/* Override Bootstrap card title color */
+.card-title {
+  color: white; /* Set card title color to white */
+}
+
+/* styles.css */
+
+/* Add styles for dropdown menu button */
+.dropdown-toggle.btn-primary {
+  background-color: #ffc107; /* Set default background color to yellow */
+  border-color: #ffc107; /* Set border color to yellow */
+  color: #343a40; /* Set text color to dark */
+}
+
+/* Darken dropdown menu button on hover */
+.dropdown-toggle.btn-primary:hover {
+  background-color: #e0a800; /* Darken background color */
+  border-color: #e0a800; /* Darken border color */
+}
+
+/* Override Bootstrap dropdown menu background color */
+.dropdown-menu {
+  background-color: #343a40; /* Set background color of dropdown menu */
+  color: white; /* Set text color of dropdown menu items */
+}
+
+/* Override Bootstrap dropdown menu item hover background color */
+.dropdown-menu a.dropdown-item:hover {
+  background-color: #ffc107; /* Set hover background color */
+}
+
+
+
+

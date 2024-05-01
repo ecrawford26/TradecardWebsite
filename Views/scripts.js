@@ -165,3 +165,97 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.error('Error fetching user collection:', error);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const discussionContainer = document.getElementById('discussionContainer');
+    const postForm = document.getElementById('postForm');
+
+    // Function to display messages
+    function displayMessages(messages) {
+        discussionContainer.innerHTML = '';
+        messages.forEach(message => {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message-container');
+            messageDiv.innerHTML = `
+                <p><strong>${message.username}:</strong> ${message.message}</p>
+            `;
+            discussionContainer.appendChild(messageDiv);
+        });
+    }
+
+    // Function to handle form submission
+    postForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const messageInput = document.getElementById('message');
+        const message = messageInput.value.trim(); // Get message text
+        if (message !== '') {
+            // Add new message to the messages array
+            const username = getUser(); // Get the username of the logged-in user
+            postMessage(username, message); // Call function to post message
+            // Clear input field
+            messageInput.value = '';
+        }
+    });
+    
+
+// Function to post a message
+function postMessage(username, message) {
+    // Perform AJAX request to post the message
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('message', message);
+
+    fetch('/post-message', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text();
+        }
+        throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+        console.log(data); // Log the response from the server
+        // Fetch updated messages and display them
+        fetchMessages();
+    })
+    .catch(error => {
+        console.error('Error posting message:', error);
+        // Handle error (e.g., display error message to the user)
+    });
+}
+
+
+    // Function to get the username of the logged-in user
+    function getUser() {
+        // Check if the user object exists in the session
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            // Return the username if the user is logged in
+            return user.name;
+        } else {
+            // Return a default username or handle the case when the user is not logged in
+            return 'Guest';
+        }
+    }
+
+    // Function to fetch messages from the server
+    async function fetchMessages() {
+        try {
+            const response = await fetch('/fetch-messages');
+            if (!response.ok) {
+                throw new Error('Failed to fetch messages');
+            }
+            const messages = await response.json();
+            // Display the fetched messages
+            displayMessages(messages);
+        } catch (error) {
+            console.error('Error fetching messages:', error);
+            // Handle error (e.g., display error message to the user)
+        }
+    }
+
+    // Initial fetch of messages
+    fetchMessages();
+});

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon TCG Collection</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pokémon TCG Collection</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="createaccount.html">Create Account/Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:3000/cards/collections.html">Collections</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="allCards.html">All Cards</a>
+          </li>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" id="expansionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Expansions
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="expansionsDropdown">
+            <li><a class="dropdown-item" href="expansions.html#base">Base</a></li>
+            <li><a class="dropdown-item" href="expansions.html#Jungle">Jungle</a></li>
+            <li><a class="dropdown-item" href="expansions.html#Fossil">Fossil</a></li>
+            <li><a class="dropdown-item" href="expansions.html#BaseSet2">Base Set 2</a></li>
+          </ul>
+        </li>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="discussion.html">Discussion</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="howtoplay.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              How to play
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="howtoplay.html#objective">Objective</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#setup">Setup</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#gameplay">Gameplay</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#winning">Winning the Game</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#conditions">Special Conditions</a></li>
+                <li><a class="dropdown-item" href="howtoplay.html#rules">Rules and Card Effects</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Base Expansion -->
+  <h2 id="base">Base</h2>
+  <div class="container">
+    <div class="row" id="baseContainer">
+        <!-- Base Expansion Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Jungle Expansion -->
+  <h2 id="Jungle">Jungle</h2>
+  <div class="container">
+    <div class="row" id="jungleContainer">
+        <!-- Jungle Expansion Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Fossil Expansion -->
+  <h2 id="Fossil">Fossil</h2>
+  <div class="container">
+    <div class="row" id="fossilContainer">
+        <!-- Fossil Expansion Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Base Set 2 Expansion -->
+  <h2 id="BaseSet2">Base Set 2</h2>
+  <div class="container">
+    <div class="row" id="baseSet2Container">
+        <!-- Base Set 2 Expansion Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- JavaScript to fetch and populate card data for each expansion -->
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('http://localhost:3000/cards/allCards');
+        const cards = await response.json();
+
+        // Filter cards for each expansion
+        const baseCards = cards.filter(card => card.expansion_id === 1);
+        const jungleCards = cards.filter(card => card.expansion_id === 2);
+        const fossilCards = cards.filter(card => card.expansion_id === 3);
+        const baseSet2Cards = cards.filter(card => card.expansion_id === 4);
+
+        // Function to populate cards for a given expansion
+        function populateCards(containerId, cards) {
+          const container = document.getElementById(containerId);
+          cards.forEach(card => {
+            const cardHtml = `
+              <div class="col-md-4 mb-4">
+                <div class="card">
+                  <img src="${card.url}" class="card-img-top" alt="${card.name}">
+                  <div class="card-body">
+                    <h5 class="card-title">${card.name}</h5>
+                    <div class="dropdown mt-3">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton_${card.card_id}" data-bs-toggle="dropdown" aria-expanded="false">
+                        Show Details
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_${card.card_id}">
+                        <li class="list-group-item">Card ID: ${card.card_id}</li>
+                        <li class="list-group-item">Expansion ID: ${card.expansion_id}</li>
+                        <!-- Additional card details -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            container.insertAdjacentHTML('beforeend', cardHtml);
+          });
+        }
+
+        // Populate cards for each expansion
+        populateCards('baseContainer', baseCards);
+        populateCards('jungleContainer', jungleCards);
+        populateCards('fossilContainer', fossilCards);
+        populateCards('baseSet2Container', baseSet2Cards);
+
+      } catch (error) {
+        console.error('Error fetching card data:', error);
+      }
+    });
+  </script>
+
+  <!-- Back to top button -->
+  <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    var mybutton = document.getElementById("back-to-top-btn");
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer mt-5 py-3 bg-dark text-white">
+    <div class="container">
+      <span>&copy; 2024 Pokémon TCG Collection</span>
+    </div>
+  </footer>
+</body>
+</html>
