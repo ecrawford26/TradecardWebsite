@@ -62,9 +62,73 @@
     </div>
   </nav>
 
-  <div class="container mt-4">
-    <div id="collectionData"></div>
+  <!-- Ethan's Collection -->
+  <h2>Ethan's Collection</h2>
+  <div class="container">
+    <div class="row" id="ethansCollection">
+        <!-- Cards from Ethan's collection will be dynamically inserted here -->
+    </div>
   </div>
+
+  <!-- John's Collection -->
+  <h2>John's Collection</h2>
+  <div class="container">
+    <div class="row" id="johnsCollection">
+        <!-- Cards from John's collection will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- JavaScript to fetch and populate card data for each collection -->
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('http://localhost:3000/cards/allCards');
+        const cards = await response.json();
+
+        // Filter cards for Ethan's collection
+        const ethansCards = cards.filter(card => card.collection === "Ethan's");
+
+        // Filter cards for John's collection
+        const johnsCards = cards.filter(card => card.collection === "John's");
+
+        // Function to populate cards for a given collection
+        function populateCards(containerId, cards) {
+          const container = document.getElementById(containerId);
+          cards.forEach(card => {
+            const cardHtml = `
+              <div class="col-md-4 mb-4">
+                <div class="card">
+                  <img src="${card.url}" class="card-img-top" alt="${card.name}">
+                  <div class="card-body">
+                    <h5 class="card-title">${card.name}</h5>
+                    <div class="dropdown mt-3">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton_${card.card_id}" data-bs-toggle="dropdown" aria-expanded="false">
+                        Show Details
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_${card.card_id}">
+                        <li class="list-group-item">Card ID: ${card.card_id}</li>
+                        <li class="list-group-item">Collection: ${card.collection}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            container.insertAdjacentHTML('beforeend', cardHtml);
+          });
+        }
+
+        // Populate cards for Ethan's collection
+        populateCards('ethansCollection', ethansCards);
+
+        // Populate cards for John's collection
+        populateCards('johnsCollection', johnsCards);
+
+      } catch (error) {
+        console.error('Error fetching card data:', error);
+      }
+    });
+  </script>
 
   <!-- Back to top button -->
   <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
@@ -72,29 +136,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Custom JavaScript -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      fetch('/usercards')
-        .then(response => response.json())
-        .then(data => {
-          const collectionDataDiv = document.getElementById('collectionData');
-          data.forEach(userCard => {
-            const userCardText = `Collection No: ${userCard.user_card_id}, Name: ${userCard.user_id}, Card ID: ${userCard.card_id}`;
-            const cardContainer = document.createElement('div');
-            cardContainer.classList.add('card', 'mt-2');
-            const cardBody = document.createElement('div');
-            cardBody.classList.add('card-body');
-            const paragraph = document.createElement('p');
-            paragraph.classList.add('card-text');
-            paragraph.textContent = userCardText;
-            cardBody.appendChild(paragraph);
-            cardContainer.appendChild(cardBody);
-            collectionDataDiv.appendChild(cardContainer);
-          });
-        })
-        .catch(error => console.error('Error fetching user cards:', error));
-    });
-    
-    // Back to top button
     var mybutton = document.getElementById("back-to-top-btn");
     window.onscroll = function() {scrollFunction()};
     function scrollFunction() {
@@ -105,17 +146,16 @@
       }
     }
     function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     }
   </script>
 
- <!-- Footer -->
- <footer class="footer mt-5 py-3 bg-dark text-white">
-   <div class="container">
-     <span>&copy; 2024 Pokémon TCG Collection</span>
-   </div>
- </footer>
+  <!-- Footer -->
+  <footer class="footer mt-5 py-3 bg-dark text-white">
+    <div class="container">
+      <span>&copy; 2024 Pokémon TCG Collection</span>
+    </div>
+  </footer>
 </body>
 </html>
-

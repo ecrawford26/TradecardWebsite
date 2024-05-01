@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Cards</title>
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-   <script src="scripts.js"></script>
+  <script src="scripts.js"></script>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="index.html">Pokémon TCG Collection</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button> 
+      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -31,7 +34,8 @@
             <a class="nav-link active" href="http://localhost:3000/cards/allcards.html">All Cards</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="expansionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="expansionsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Expansions
             </a>
             <ul class="dropdown-menu" aria-labelledby="expansionsDropdown">
@@ -45,7 +49,8 @@
             <a class="nav-link" href="discussion.html">Discussion</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="howtoplay.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="howtoplay.html" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
               How to play
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -62,70 +67,99 @@
     </div>
   </nav>
 
-<!-- Container for all cards -->
-<div class="container">
-  <div class="row" id="cardContainer">
-      <!-- Cards will be dynamically inserted here -->
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Your existing navbar content -->
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by card name...">
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- JavaScript to fetch and populate card data -->
-<script>
-  window.addEventListener('DOMContentLoaded', async () => {
+  <!-- Container for all cards -->
+  <div class="container">
+    <div class="row" id="cardContainer">
+      <!-- Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- JavaScript to fetch and populate card data -->
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
       try {
-          const response = await fetch('http://localhost:3000/cards/allCards');
-          const cards = await response.json();
-          const cardContainer = document.getElementById('cardContainer');
+        const response = await fetch('http://localhost:3000/cards/allCards');
+        const cards = await response.json();
+        const cardContainer = document.getElementById('cardContainer');
 
-          // Loop through each card and create card elements
+        // Function to render cards based on search input
+        const renderCards = (cards) => {
+          cardContainer.innerHTML = ''; // Clear existing cards
           cards.forEach(card => {
-              const cardHtml = `
-                  <div class="col-md-4 mb-4">
-                      <div class="card">
-                          <!-- Card image -->
-                          <img src="${card.url}" class="card-img-top" alt="${card.name}">
-                          <div class="card-body">
-                              <!-- Card name -->
-                              <h5 class="card-title">${card.name}</h5>
-                              <!-- Dropdown for additional card details -->
-                              <div class="dropdown mt-3">
-                                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton_${card.card_id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Show Details
-                                  </button>
-                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_${card.card_id}">
-                                      <!-- Additional card details -->
-                                      <li class="list-group-item">Card ID: ${card.card_id}</li>
-                                      <li class="list-group-item">Expansion ID: ${card.expansion_id}</li>
-                                      <li class="list-group-item">Series ID: ${card.series_id}</li>
-                                      <li class="list-group-item">Publisher ID: ${card.publisher_id}</li>
-                                      <li class="list-group-item">Generation ID: ${card.generation_id}</li>
-                                      <li class="list-group-item">Release Date: ${card.release_date}</li>
-                                      <li class="list-group-item">Artist ID: ${card.artist_id}</li>
-                                      <li class="list-group-item">Card Number: ${card.card_number}</li>
-                                      <li class="list-group-item">Type ID: ${card.type_id}</li>
-                                      <li class="list-group-item">Level: ${card.level}</li>
-                                      <li class="list-group-item">HP: ${card.hp}</li>
-                                      <li class="list-group-item">Evolves From: ${card.evolves_from}</li>
-                                      <li class="list-group-item">Evolves To: ${card.evolves_to}</li>
-                                      <li class="list-group-item">Rarity ID: ${card.rarity_id}</li>
-                                      <li class="list-group-item">Info: ${card.info}</li>
-                                      <li class="list-group-item">Pokedex Numbers: ${card.pokedex_numbers}</li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
+            const cardHtml = `
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <!-- Card image -->
+                <img src="${card.url}" class="card-img-top" alt="${card.name}">
+                <div class="card-body">
+                  <!-- Card name -->
+                  <h5 class="card-title">${card.name}</h5>
+                  <!-- Dropdown for additional card details -->
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton_${card.card_id}" data-bs-toggle="dropdown" aria-expanded="false">
+                      Show Details
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_${card.card_id}">
+                      <!-- Additional card details -->
+                      <li class="list-group-item">Card ID: ${card.card_id}</li>
+                      <li class="list-group-item">Expansion ID: ${card.expansion_id}</li>
+                      <li class="list-group-item">Series ID: ${card.series_id}</li>
+                      <li class="list-group-item">Publisher ID: ${card.publisher_id}</li>
+                      <li class="list-group-item">Generation ID: ${card.generation_id}</li>
+                      <li class="list-group-item">Release Date: ${card.release_date}</li>
+                      <li class="list-group-item">Artist ID: ${card.artist_id}</li>
+                      <li class="list-group-item">Card Number: ${card.card_number}</li>
+                      <li class="list-group-item">Type ID: ${card.type_id}</li>
+                      <li class="list-group-item">Level: ${card.level}</li>
+                      <li class="list-group-item">HP: ${card.hp}</li>
+                      <li class="list-group-item">Evolves From: ${card.evolves_from}</li>
+                      <li class="list-group-item">Evolves To: ${card.evolves_to}</li>
+                      <li class="list-group-item">Rarity ID: ${card.rarity_id}</li>
+                      <li class="list-group-item">Info: ${card.info}</li>
+                      <li class="list-group-item">Pokedex Numbers: ${card.pokedex_numbers}</li>
+                    </ul>
                   </div>
-              `;
-              cardContainer.insertAdjacentHTML('beforeend', cardHtml);
+                </div>
+              </div>
+            </div>
+          `;
+            cardContainer.insertAdjacentHTML('beforeend', cardHtml);
           });
-      } catch (error) {
-          console.error('Error fetching card data:', error);
-      }
-  });
-</script>
+        };
 
-    <!-- Custom JavaScript -->
-    <script src="scripts.js"></script>
+        // Initial rendering of all cards
+        renderCards(cards);
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', () => {
+          const searchTerm = searchInput.value.trim().toLowerCase();
+          const filteredCards = cards.filter(card => card.name.toLowerCase().includes(searchTerm));
+          renderCards(filteredCards);
+        });
+
+      } catch (error) {
+        console.error('Error fetching card data:', error);
+      }
+    });
+  </script>
+
+  <!-- Custom JavaScript -->
+  <script src="scripts.js"></script>
 
 
   <!-- Back to top button -->
@@ -137,7 +171,7 @@
     // Get the button
     var mybutton = document.getElementById("back-to-top-btn");
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () { scrollFunction() };
     function scrollFunction() {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
@@ -152,11 +186,12 @@
     }
   </script>
 
- <!-- Footer -->
- <footer class="footer mt-5 py-3 bg-dark text-white">
-   <div class="container">
-     <span>&copy; 2024 Pokémon TCG Collection</span>
-   </div>
- </footer>
+  <!-- Footer -->
+  <footer class="footer mt-5 py-3 bg-dark text-white">
+    <div class="container">
+      <span>&copy; 2024 Pokémon TCG Collection</span>
+    </div>
+  </footer>
 </body>
+
 </html>

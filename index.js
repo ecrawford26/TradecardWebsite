@@ -23,6 +23,27 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// Middleware to check if the user is authenticated
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.user) {
+        // User is authenticated, proceed to the next middleware or route handler
+        return next();
+    } else {
+        // User is not authenticated, redirect to the login page
+        res.redirect('/createaccount.html'); // Adjust the redirect URL as needed
+    }
+}
+
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.user) {
+        // User is authenticated, proceed to the next middleware or route handler
+        return next();
+    } else {
+        // User is not authenticated, redirect to the login page
+        res.redirect('/createaccount.html'); // Adjust the redirect URL as needed
+    }
+}
+
 // Routes
 app.use('/cards', cardRoutes, express.static('Views'));
 
@@ -49,24 +70,6 @@ app.get('/cards/:cardName', (req, res) => {
     });
 });
 
-// Route to handle registration form submission
-app.post('/register', (req, res) => {
-    const { name, email, password } = req.body;
-  
-    connection.query(
-      'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-      [name, email, password],
-      (error, results) => {
-        if (error) {
-          console.error('Error registering user:', error);
-          return res.status(500).send('Error registering user. Please try again.');
-        }
-  
-        console.log('User registered:', results);
-        res.redirect('/cards/discussion.html');
-      }
-    );
-});
 
 // Route to handle requests to the login page
 app.get('/login', (req, res) => {
@@ -97,42 +100,26 @@ app.post('/login', (req, res) => {
 
             // Store user data in session upon successful login
             req.session.user = user;
-            res.redirect('/cards/discussion.html'); // Redirect to the discussion page
-        }
-    );
-});
-
-// Route to handle form submission for posting messages
-app.post('/post-message', (req, res) => {
-    const { message } = req.body;
-    const user = req.session.user;
-    if (!user) {
-        return res.status(401).send('Unauthorized');
-    }
-    const username = user.name;
-    // Code to save the message to the database with the username
-    connection.query(
-        'INSERT INTO messages (username, message) VALUES (?, ?)',
-        [username, message],
-        (error, results) => {
-            if (error) {
-                console.error('Error posting message:', error);
-                return res.status(500).send('Error posting message. Please try again.');
-            }
-            console.log('Message posted successfully:', results);
-            res.redirect('/discussion.html'); // Redirect to the discussion page
+            res.redirect('/cards/createaccount.html'); 
         }
     );
 });
 
 
-// Route to fetch messages from the database
-app.get('/fetch-messages', (req, res) => {
-    connection.query('SELECT * FROM messages', (error, results) => {
-        if (error) {
-            console.error('Error fetching messages:', error);
-            return res.status(500).send('Error fetching messages. Please try again.');
+
+// Route to handle user logout
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).send('Internal Server Error');
         }
-        res.json(results);
+        res.redirect('/cards/createaccount.html'); // Redirect to login page after logout
     });
+});
+
+
+// Route to handle requests to the collections page
+app.get('/collections.html', isAuthenticated, (req, res) => {
+    res.sendFile(__dirname + '/Views/collections.html');
 });
