@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const session = require('express-session');
 
-// Create a MySQL connection pool
+// create a MySQL connection pool - not sure if i needed this but somethings wouldn't work without
 const connection = mysql.createPool({
     host: 'localhost',
     user: 'root',

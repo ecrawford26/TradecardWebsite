@@ -1,4 +1,4 @@
-/* Custom styles for body */
+/* Custom styles */
 body {
   margin: 0;
   padding: 0;
@@ -9,8 +9,8 @@ body {
   text-align: left;
   background-color: #e2e8f0;
   background-image: url('Media/446481.jpg');
-  background-size: 100%; /* Ensures the background image covers the entire container */
-  background-repeat: repeat; /* Repeats the background image */
+  background-size: 100%;
+  background-repeat: repeat;
   padding-bottom: 100px;
 }
 
@@ -38,7 +38,6 @@ body {
   border-top: 10px solid #dee2e6;
 }
 
-/* Back to top button */
 #back-to-top-btn {
   display: none;
   position: fixed;
@@ -74,12 +73,17 @@ body {
   margin-top: 20px;
 }
 
-.nav .show>.nav-link.nav-link-faded, .nav-link.nav-link-faded.active, .nav-link.nav-link-faded:active, .nav-pills .nav-link.nav-link-faded.active, .navbar-nav .show>.nav-link.nav-link-faded {
+.nav .show>.nav-link.nav-link-faded,
+.nav-link.nav-link-faded.active,
+.nav-link.nav-link-faded:active,
+.nav-pills .nav-link.nav-link-faded.active,
+.navbar-nav .show>.nav-link.nav-link-faded {
   color: #3367b5;
   background-color: #c9d8f0;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
   color: #fff;
   background-color: #467bcb;
 }
@@ -102,7 +106,7 @@ body {
 }
 
 .card {
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
 }
 
 .card {
@@ -113,7 +117,7 @@ body {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 0 solid rgba(0,0,0,.125);
+  border: 0 solid rgba(0, 0, 0, .125);
   border-radius: .25rem;
 }
 
@@ -123,7 +127,6 @@ body {
   padding: 1rem;
 }
 
-/* Custom styles for footer */
 .footer {
   padding: 1rem;
   background-color: #343a40;
@@ -134,7 +137,6 @@ body {
   bottom: 0;
 }
 
-/* Custom styles for the "How to play" sections */
 .section-heading {
   font-size: 2rem;
   color: #fff;
@@ -143,41 +145,41 @@ body {
 }
 
 .container2 {
-  padding: 20px 20px 10px 20px; /* Added padding to the top */
-  background-color: #343a40; /* Match the background color with the navbar */
-  border-radius: 10px; /* Rounded corners */
-  margin-bottom: 20px; /* Spacing between sections */
+  padding: 20px 20px 10px 20px;
+  background-color: #343a40;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .container2 p {
-  color: #fff; /* White text color */
+  color: #fff;
 }
 
-/* Add space between navbar and content */
+
 .navbar {
   margin-bottom: 20px;
 }
 
- /* Add some padding to the sections for better visualization */
- section {
+
+section {
   padding: 20px;
 }
 
 
 .container {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line if necessary */
-  justify-content: flex-start; /* Align items to the start of the flex container */
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .card {
-  width: 200px; /* Set a fixed width for each card */
-  margin: 10px; /* Add some spacing between cards */
-  text-align: center; /* Center align text within the card */
+  width: 200px;
+  margin: 10px;
+  text-align: center;
 }
 
 .card h2 {
-  margin-top: 5px; /* Add some space between the image and the text */
+  margin-top: 5px;
 }
 
 .card-link {
@@ -193,43 +195,35 @@ body {
   margin-bottom: 10px;
 }
 
-/* Add styles for card containers */
 .card {
-  background-color: #343a40; /* Set background color */
-  color: white; /* Set text color to white */
-  border: 1px solid #dee2e6; /* Add border */
-  border-radius: 8px; /* Add border radius */
+  background-color: #343a40;
+  color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
 }
 
-/* Override Bootstrap card title color */
 .card-title {
-  color: white; /* Set card title color to white */
+  color: white;
 }
 
-/* styles.css */
-
-/* Add styles for dropdown menu button */
 .dropdown-toggle.btn-primary {
-  background-color: #ffc107; /* Set default background color to yellow */
-  border-color: #ffc107; /* Set border color to yellow */
-  color: #343a40; /* Set text color to dark */
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #343a40;
 }
 
-/* Darken dropdown menu button on hover */
 .dropdown-toggle.btn-primary:hover {
-  background-color: #e0a800; /* Darken background color */
-  border-color: #e0a800; /* Darken border color */
+  background-color: #e0a800;
+  border-color: #e0a800;
 }
 
-/* Override Bootstrap dropdown menu background color */
 .dropdown-menu {
-  background-color: #343a40; /* Set background color of dropdown menu */
-  color: white; /* Set text color of dropdown menu items */
+  background-color: #343a40;
+  color: white;
 }
 
-/* Override Bootstrap dropdown menu item hover background color */
 .dropdown-menu a.dropdown-item:hover {
-  background-color: #ffc107; /* Set hover background color */
+  background-color: #ffc107;
 }
 
 
@@ -244,6 +238,5 @@ body {
 }
 
 .container {
-  max-width: 800px; /* Set the maximum width of the container */
+  max-width: 800px;
 }
-

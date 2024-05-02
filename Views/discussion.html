@@ -84,7 +84,7 @@
   
   <hr>
   
-  <!-- Display area for posts -->
+  <!-- Display area -->
   <div id="postList">
     <!-- Made-up posts already included -->
     <div class="card mt-3">
@@ -105,7 +105,7 @@
           <button type="submit" class="btn btn-primary btn-sm">Submit Reply</button>
         </form>
         <div class="replies mt-3">
-          <!-- Replies will be dynamically added here -->
+          <!-- Replies  -->
         </div>
       </div>
     </div>
@@ -127,7 +127,6 @@
           <button type="submit" class="btn btn-primary btn-sm">Submit Reply</button>
         </form>
         <div class="replies mt-3">
-          <!-- Replies will be dynamically added here -->
         </div>
       </div>
     </div>
@@ -223,7 +222,7 @@
       var author = this.querySelector('input').value;
       var replyText = this.querySelector('textarea').value;
       
-      // Create a new reply element
+      // Creating a new reply element
       var replyElement = document.createElement("div");
       replyElement.classList.add("card", "mt-3");
       replyElement.innerHTML = `

@@ -1,5 +1,3 @@
-// scripts.js
-
 // Fetch all cards from the backend
 async function fetchCards() {
     const response = await fetch('/cards/allcards');
@@ -18,10 +16,6 @@ async function fetchExpansions() {
         return acc;
     }, {});
 }
-
-// Similarly fetch data for generations, publishers, rarities, and types
-// and store them in JavaScript objects or arrays using similar methods
-
 
 // Display cards on the webpage
 function displayCards(cards) {
@@ -65,8 +59,6 @@ window.addEventListener('load', async () => {
     }
 });
 
-// scripts.js
-
 // Function to toggle the dropdown for a card
 function toggleDropdown(cardId) {
     const dropdown = document.getElementById('dropdown_' + cardId);
@@ -75,7 +67,7 @@ function toggleDropdown(cardId) {
     } else {
         dropdown.style.display = 'none';
     }
-}window.addEventListener('DOMContentLoaded', async () => {
+} window.addEventListener('DOMContentLoaded', async () => {
     try {
         // Fetch user's collection data
         const response = await fetch('http://localhost:3000/mycollection');

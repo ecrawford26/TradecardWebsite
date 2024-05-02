@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Cards</title>
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-   <script src="scripts.js"></script>
+  <script src="scripts.js"></script>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="index.html">Pokémon TCG Collection</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button> 
+      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -31,7 +34,8 @@
             <a class="nav-link" href="http://localhost:3000/cards/allcards.html">All Cards</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" id="expansionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle" href="#" id="expansionsDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
               Expansions
             </a>
             <ul class="dropdown-menu" aria-labelledby="expansionsDropdown">
@@ -45,7 +49,8 @@
             <a class="nav-link" href="discussion.html">Discussion</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="howtoplay.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="howtoplay.html" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
               How to play
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -66,7 +71,6 @@
   <h2 id="base">Base</h2>
   <div class="container">
     <div class="row" id="baseContainer">
-        <!-- Base Expansion Cards will be dynamically inserted here -->
     </div>
   </div>
 
@@ -74,7 +78,6 @@
   <h2 id="Jungle">Jungle</h2>
   <div class="container">
     <div class="row" id="jungleContainer">
-        <!-- Jungle Expansion Cards will be dynamically inserted here -->
     </div>
   </div>
 
@@ -82,7 +85,6 @@
   <h2 id="Fossil">Fossil</h2>
   <div class="container">
     <div class="row" id="fossilContainer">
-        <!-- Fossil Expansion Cards will be dynamically inserted here -->
     </div>
   </div>
 
@@ -90,7 +92,6 @@
   <h2 id="BaseSet2">Base Set 2</h2>
   <div class="container">
     <div class="row" id="baseSet2Container">
-        <!-- Base Set 2 Expansion Cards will be dynamically inserted here -->
     </div>
   </div>
 
@@ -153,7 +154,7 @@
   <!-- Custom JavaScript -->
   <script>
     var mybutton = document.getElementById("back-to-top-btn");
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () { scrollFunction() };
     function scrollFunction() {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
@@ -174,4 +175,5 @@
     </div>
   </footer>
 </body>
+
 </html>
