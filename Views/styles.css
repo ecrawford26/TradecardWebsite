@@ -90,7 +90,7 @@ body {
 }
 
 .nav-link.active {
-  color: #467bcb;
+  color: #cbcb46;
 }
 
 .nav-pills .nav-link {
@@ -233,5 +233,17 @@ body {
 }
 
 
+.btn-primary {
+  background-color: #343a40;
+  border-color: #343a40;
+}
 
+.btn-primary:hover {
+  background-color: #2a2e32;
+  border-color: #2a2e32;
+}
+
+.container {
+  max-width: 800px; /* Set the maximum width of the container */
+}
 

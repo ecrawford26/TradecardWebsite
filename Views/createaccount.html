@@ -62,6 +62,10 @@
     </div>
   </nav>
 
+  <form id="createAccountForm">
+  <p id="loginStatus" style="display: none;"></p>
+
+
   <div id="loggedInStatus" class="alert alert-success" style="display: none;"></div>
   <button id="logoutButton" class="btn btn-danger" style="display: none;">Logout</button>
 <div id="logoutMessage" class="alert alert-info" style="display: none;"></div>
@@ -142,57 +146,75 @@
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 
-  
-    // Function to check if the user is logged in
-  function checkLoginStatus() {
-    // Check if the user is logged in (you'll need to implement this logic)
-    const isLoggedIn = true; // Replace this with your actual logic to check if the user is logged in
+// Some of this code is correct and works well, it lets you create a new account which then gets posted and stored in the sql database, redirects you to the collection page with the idea that you needed to be logged in to access this page, however anyone can just see it.
 
-    if (isLoggedIn) {
-      // User is logged in, display a welcome message
-      const user = "User"; // Replace "User" with the actual user's name
-      document.getElementById('loggedInStatus').innerText = `Welcome, ${user}! You are now logged in.`;
-      document.getElementById('loggedInStatus').style.display = 'block';
-    } else {
-      // User is not logged in, hide the welcome message
-      document.getElementById('loggedInStatus').style.display = 'none';
-    }
-  }
+    document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting through the browser
+    
+        var formData = {
+            name: document.getElementById('exampleInputName').value,
+            email: document.getElementById('exampleInputEmail2').value,
+            password: document.getElementById('exampleInputPassword2').value
+        };
+    
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Display the success message
+                document.getElementById('loginStatus').innerText = data.message;
+                document.getElementById('loginStatus').style.display = 'block';
+            } else {
+                // Handle failures
+                document.getElementById('loginStatus').innerText = 'Failed to create account: ' + data.message;
+                document.getElementById('loginStatus').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
 
-  // Call the function when the page loads
-  window.onload = checkLoginStatus;
+    document.getElementById('signInForm').addEventListener('submit', function(event) {
+    
+        var loginData = {
+            email: document.getElementById('exampleInputEmail1').value,
+            password: document.getElementById('exampleInputPassword1').value
+        };
+    
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Show signed in message
+                document.getElementById('loginStatus').innerText = 'Signed in successfully!';
+                document.getElementById('loginStatus').style.display = 'block';
+            } else {
+                // Handle login failure
+                document.getElementById('loginStatus').innerText = data.message;
+                document.getElementById('loginStatus').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('loginStatus').innerText = 'Login error: ' + error.message;
+            document.getElementById('loginStatus').style.display = 'block';
+        });
+    });
 
-  // Function to check if the user is logged in
-  function checkLoginStatus() {
-    // Check if the user is logged in (you'll need to implement this logic)
-    const isLoggedIn = true; // Replace this with your actual logic to check if the user is logged in
-
-    if (isLoggedIn) {
-      // User is logged in, display a logout button
-      document.getElementById('logoutButton').style.display = 'block';
-    } else {
-      // User is not logged in, hide the logout button
-      document.getElementById('logoutButton').style.display = 'none';
-    }
-  }
-
-  // Function to handle logout
-  function logout() {
-    // Perform logout functionality here (e.g., destroy session, redirect to login page)
-    // For demonstration purposes, let's just display a logout message
-    document.getElementById('logoutMessage').innerText = 'You have been logged out.';
-    document.getElementById('logoutMessage').style.display = 'block';
-    // You can add additional logic here to perform actual logout actions
-  }
-
-  // Call the function when the page loads
-  window.onload = checkLoginStatus;
-
-  // Add click event listener to the logout button
-  document.getElementById('logoutButton').addEventListener('click', function() {
-    logout();
-  });
-</script>
+  </script>
 
   <!-- Footer -->
   <footer class="footer mt-5 py-3 bg-dark text-white">

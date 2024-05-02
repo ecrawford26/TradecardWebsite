@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Cards</title>
+  <title>Discussion</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
   <link rel="stylesheet" href="styles.css">
@@ -62,92 +62,186 @@
     </div>
   </nav>
 
-  <body>
-    <div class="container mt-5">
-      <!-- Discussion Form -->
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Start a New Discussion</h5>
-        </div>
-        <div class="card-body">
-          <!-- Form for creating a new discussion -->
-          <form>
-            <div class="mb-3">
-              <label for="discussionTitle" class="form-label">Discussion Title</label>
-              <input type="text" class="form-control" id="discussionTitle" placeholder="Enter title" required>
-            </div>
-            <div class="mb-3">
-              <label for="discussionContent" class="form-label">Discussion Content</label>
-              <textarea class="form-control" id="discussionContent" rows="3" placeholder="Enter your discussion here" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Create Discussion</button>
-          </form>
-        </div>
-      </div>
+<div class="container mt-5">
+  <h1 class="mb-4">Discussion Board</h1>
   
-      <!-- Fake Discussion Posts -->
-      <div class="mt-5">
-        <h3 class="mb-4">Recent Discussions</h3>
-        <!-- Fake Post 1 -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <h5 class="card-title">How to improve my deck?</h5>
+  <!-- Form to submit a new post -->
+  <form id="postForm">
+    <div class="form-group">
+      <label for="postTitle">Title:</label>
+      <input type="text" class="form-control" id="postTitle" required>
+    </div>
+    <div class="form-group">
+      <label for="postAuthor">Author:</label>
+      <input type="text" class="form-control" id="postAuthor" required>
+    </div>
+    <div class="form-group">
+      <label for="postText">Post:</label>
+      <textarea class="form-control" id="postText" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
+  <hr>
+  
+  <!-- Display area for posts -->
+  <div id="postList">
+    <!-- Made-up posts already included -->
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">Favorite Pokémon Cards</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Posted by: Ash Ketchum</h6>
+        <p class="card-text">I'd love to hear everyone's favorite Pokémon cards! Mine has to be Charizard. It's a classic!</p>
+        <button class="btn btn-sm btn-info replyBtn">Reply</button>
+        <form class="mt-2 d-none replyForm">
+          <div class="form-group">
+            <label for="replyAuthor">Your Name:</label>
+            <input type="text" class="form-control" required>
           </div>
-          <div class="card-body">
-            <p class="card-text">I've been playing Pokémon TCG for a while now, but I'm struggling to improve my deck. Any tips?</p>
+          <div class="form-group">
+            <label for="replyText">Your Reply:</label>
+            <textarea class="form-control" rows="2" required></textarea>
           </div>
-          <div class="card-footer">
-            <small class="text-muted">Posted by Ash Ketchum</small>
-          </div>
-        </div>
-        <!-- Fake Post 2 -->
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Favorite Pokémon TCG set?</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">What's your favorite Pokémon TCG set of all time and why?</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Posted by Misty Waterflower</small>
-          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Reply</button>
+        </form>
+        <div class="replies mt-3">
+          <!-- Replies will be dynamically added here -->
         </div>
       </div>
     </div>
-  
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">New Expansion Set</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Posted by: Professor Oak</h6>
+        <p class="card-text">Have you checked out the new expansion set? Some powerful Pokémon in there!</p>
+        <button class="btn btn-sm btn-info replyBtn">Reply</button>
+        <form class="mt-2 d-none replyForm">
+          <div class="form-group">
+            <label for="replyAuthor">Your Name:</label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="replyText">Your Reply:</label>
+            <textarea class="form-control" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Reply</button>
+        </form>
+        <div class="replies mt-3">
+          <!-- Replies will be dynamically added here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <!-- Back to top button -->
-  <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
-  <!-- Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom JavaScript -->
-  <script>
-    // Get the button
-    var mybutton = document.getElementById("back-to-top-btn");
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-  </script>
-  
-  <!-- Footer -->
-  <footer class="footer mt-5 py-3 bg-dark text-white">
-    <div class="container">
-      <span>&copy; 2024 Pokémon TCG Collection</span>
-    </div>
-  </footer>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ <!-- Back to top button -->
+ <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
+ <!-- Bootstrap Bundle with Popper -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- Custom JavaScript -->
+ <script>
+   // Get the button
+   var mybutton = document.getElementById("back-to-top-btn");
+   // When the user scrolls down 20px from the top of the document, show the button
+   window.onscroll = function() {scrollFunction()};
+   function scrollFunction() {
+     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+       mybutton.style.display = "block";
+     } else {
+       mybutton.style.display = "none";
+     }
+   }
+   // When the user clicks on the button, scroll to the top of the document
+   function topFunction() {
+     document.body.scrollTop = 0; // For Safari
+     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+   }
+
+  // Function to handle form submission
+  document.getElementById("postForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+    
+    // Get the values from the form inputs
+    var title = document.getElementById("postTitle").value;
+    var author = document.getElementById("postAuthor").value;
+    var postText = document.getElementById("postText").value;
+    
+    // Create a new post element
+    var postElement = document.createElement("div");
+    postElement.classList.add("card", "mt-3");
+    postElement.innerHTML = `
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Posted by: ${author}</h6>
+        <p class="card-text">${postText}</p>
+        <button class="btn btn-sm btn-info replyBtn">Reply</button>
+        <form class="mt-2 d-none replyForm">
+          <div class="form-group">
+            <label for="replyAuthor">Your Name:</label>
+            <input type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="replyText">Your Reply:</label>
+            <textarea class="form-control" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Reply</button>
+        </form>
+        <div class="replies mt-3">
+          <!-- Replies will be dynamically added here -->
+        </div>
+      </div>
+    `;
+    
+    // Append the new post element to the post list
+    document.getElementById("postList").appendChild(postElement);
+    
+    // Clear the form inputs
+    document.getElementById("postTitle").value = "";
+    document.getElementById("postAuthor").value = "";
+    document.getElementById("postText").value = "";
+  });
+
+  // Function to toggle reply form visibility
+  document.querySelectorAll('.replyBtn').forEach(button => {
+    button.addEventListener('click', function() {
+      const form = this.nextElementSibling;
+      form.classList.toggle('d-none');
+    });
+  });
+
+  // Function to handle reply submission
+  document.querySelectorAll('.replyForm').forEach(form => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+      
+      // Get the values from the form inputs
+      var author = this.querySelector('input').value;
+      var replyText = this.querySelector('textarea').value;
+      
+      // Create a new reply element
+      var replyElement = document.createElement("div");
+      replyElement.classList.add("card", "mt-3");
+      replyElement.innerHTML = `
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">Replied by: ${author}</h6>
+          <p class="card-text">${replyText}</p>
+        </div>
+      `;
+      
+      // Append the new reply element to the replies section
+      this.parentElement.querySelector('.replies').appendChild(replyElement);
+      
+      // Clear the form inputs
+      this.querySelector('input').value = "";
+      this.querySelector('textarea').value = "";
+    });
+  });
+</script>
+
 </body>
 </html>

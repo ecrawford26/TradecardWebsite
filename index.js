@@ -34,16 +34,6 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-function isAuthenticated(req, res, next) {
-    if (req.session && req.session.user) {
-        // User is authenticated, proceed to the next middleware or route handler
-        return next();
-    } else {
-        // User is not authenticated, redirect to the login page
-        res.redirect('/createaccount.html'); // Adjust the redirect URL as needed
-    }
-}
-
 // Routes
 app.use('/cards', cardRoutes, express.static('Views'));
 
@@ -76,7 +66,6 @@ app.get('/login', (req, res) => {
     res.send('Login Page');
 });
 
-// Route to handle sign-in form submission
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
@@ -90,20 +79,21 @@ app.post('/login', (req, res) => {
             }
 
             if (results.length === 0) {
-                return res.status(401).send('Invalid email or password');
+                return res.status(401).json({ status: 'error', message: 'Invalid email or password' });
             }
 
             const user = results[0];
             if (user.password !== password) {
-                return res.status(401).send('Invalid email or password');
+                return res.status(401).json({ status: 'error', message: 'Invalid email or password' });
             }
 
             // Store user data in session upon successful login
             req.session.user = user;
-            res.redirect('/cards/createaccount.html'); 
+            res.json({ status: 'success', message: 'Logged in successfully', redirect: '/cards/collections.html' });
         }
     );
 });
+
 
 
 
@@ -122,4 +112,35 @@ app.get('/logout', (req, res) => {
 // Route to handle requests to the collections page
 app.get('/collections.html', isAuthenticated, (req, res) => {
     res.sendFile(__dirname + '/Views/collections.html');
+});
+
+app.post('/register', (req, res) => {
+    const { name, email, password } = req.body;
+
+    const insertQuery = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+    
+    connection.query(insertQuery, [name, email, password], (error, results) => {
+        if (error) {
+            console.error('Error registering new user:', error);
+            return res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+        }
+        // Set user session here if login right after registration is needed
+        req.session.user = { name, email };
+        res.json({ status: 'success', message: 'Account created successfully!' });
+    });
+});
+
+// tried to create a route to handle creating a new discussion that linked with the database but i couldn't get it to work properly
+app.post('/create-discussion', (req, res) => {
+    const { title, content } = req.body;
+
+    const insertQuery = 'INSERT INTO discussions (title, content) VALUES (?, ?)';
+    
+    connection.query(insertQuery, [title, content], (error, results) => {
+        if (error) {
+            console.error('Error creating new discussion:', error);
+            return res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+        }
+        res.json({ status: 'success', message: 'Discussion created successfully!' });
+    });
 });
